@@ -24,3 +24,5 @@ Route::resource('articles', App\Http\Controllers\API\ArticleAPIController::class
 Route::resource('news', App\Http\Controllers\API\NewsAPIController::class);
 
 Route::resource('users', App\Http\Controllers\API\UserAPIController::class);
+
+Route::resource('banners', App\Http\Controllers\API\BannerAPIController::class);

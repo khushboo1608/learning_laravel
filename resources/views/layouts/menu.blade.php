@@ -22,3 +22,9 @@
         <span>Users</span>
     </a>
 </li>
+<li class="nav-item {{ Request::is('banners*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('banners.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Banners</span>
+    </a>
+</li>
