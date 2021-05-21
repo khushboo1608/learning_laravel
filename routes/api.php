@@ -26,3 +26,5 @@ Route::resource('news', App\Http\Controllers\API\NewsAPIController::class);
 Route::resource('users', App\Http\Controllers\API\UserAPIController::class);
 
 Route::resource('banners', App\Http\Controllers\API\BannerAPIController::class);
+
+Route::resource('addersses', App\Http\Controllers\API\AdderssAPIController::class);

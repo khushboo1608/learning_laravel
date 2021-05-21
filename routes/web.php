@@ -32,3 +32,5 @@ Route::resource('news', App\Http\Controllers\NewsController::class);
 Route::resource('users', App\Http\Controllers\UserController::class);
 
 Route::resource('banners', App\Http\Controllers\BannerController::class);
+
+Route::resource('addersses', App\Http\Controllers\AdderssController::class);

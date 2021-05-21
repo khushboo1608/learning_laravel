@@ -28,3 +28,9 @@
         <span>Banners</span>
     </a>
 </li>
+<li class="nav-item {{ Request::is('addersses*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('addersses.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Addersses</span>
+    </a>
+</li>

@@ -1,6 +1,9 @@
 <?php
 
-namespace App\Providers;
+namespace App\Providers;
+
+
+use App\Models\User;
 use App\Models\Article;
 use App\Models\Category;
 
@@ -26,6 +29,10 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        View::composer(['addersses.fields'], function ($view) {
+            $userItems = User::pluck('name','id')->toArray();
+            $view->with('userItems', $userItems);
+        });
         View::composer(['posts.fields'], function ($view) {
             $articleItems = Article::pluck('title','id')->toArray();
             $view->with('articleItems', $articleItems);
@@ -34,10 +41,10 @@ class ViewServiceProvider extends ServiceProvider
             $categoryItems = Category::pluck('name','id')->toArray();
             $view->with('categoryItems', $categoryItems);
         });
-        View::composer(['books.fields'], function ($view) {
-            $categoryItems = Category::pluck('name','id')->toArray();
-            $view->with('categoryItems', $categoryItems);
-        });
+        // View::composer(['books.fields'], function ($view) {
+        //     $categoryItems = Category::pluck('name','id')->toArray();
+        //     $view->with('categoryItems', $categoryItems);
+        // });
         //
     }
 }
