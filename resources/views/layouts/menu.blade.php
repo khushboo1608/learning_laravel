@@ -10,3 +10,15 @@
         <span>Posts</span>
     </a>
 </li>
+<li class="nav-item {{ Request::is('news*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('news.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>News</span>
+    </a>
+</li>
+<li class="nav-item {{ Request::is('users*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('users.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Users</span>
+    </a>
+</li>

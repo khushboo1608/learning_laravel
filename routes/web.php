@@ -26,3 +26,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('articles', App\Http\Controllers\ArticleController::class);
 
 Route::resource('posts', App\Http\Controllers\PostController::class);
+
+Route::resource('news', App\Http\Controllers\NewsController::class);
+
+Route::resource('users', App\Http\Controllers\UserController::class);

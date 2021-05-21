@@ -20,3 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::resource('articles', App\Http\Controllers\API\ArticleAPIController::class);
+
+Route::resource('news', App\Http\Controllers\API\NewsAPIController::class);
+
+Route::resource('users', App\Http\Controllers\API\UserAPIController::class);
