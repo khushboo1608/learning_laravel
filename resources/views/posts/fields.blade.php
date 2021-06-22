@@ -22,6 +22,16 @@
 	{!! Form::file('image_url',null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Image Url Field -->
+<div class="form-group col-sm-6">
+@if(empty($post->image_url))
+
+@else
+    <p><img src="{{ $post->image_url }}" width="100" />
+    <input type="hidden" name="hidden_image" value="{{ $post->image_url }}" /></p>
+@endif
+</div>
+
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
