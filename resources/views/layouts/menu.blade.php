@@ -34,3 +34,9 @@
         <span>Addersses</span>
     </a>
 </li>
+<li class="nav-item {{ Request::is('registerUsers*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('registerUsers.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Register Users</span>
+    </a>
+</li>

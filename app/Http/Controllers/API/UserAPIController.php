@@ -9,6 +9,10 @@ use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use Image;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 /**
  * Class UserController
@@ -127,5 +131,44 @@ class UserAPIController extends AppBaseController
         $user->delete();
 
         return $this->sendSuccess('User deleted successfully');
+    }
+
+
+    public function register(CreateUserAPIRequest $request)
+    {
+        
+        $validatedData = $request->validate([
+            'name' => 'required|max:55',
+            'email' => 'email|required|unique:users',
+            'password' => 'required|confirmed',
+            'phone' => 'required|string',
+            'image' =>  'required|image|max:2048'
+        ]);
+       
+        $validatedData['password'] = bcrypt($request->password);
+        $validatedData['image'] = Storage::disk('public')->put('upload', $request->file('image'));
+        $validatedData['role'] = 0;
+        $user = User::create($validatedData);
+
+        $accessToken = $user->createToken('authToken')->accessToken;
+
+        return response([ 'user' => $user, 'access_token' => $accessToken]);
+    }
+
+    public function login(Request $request)
+    {
+        $loginData = $request->validate([
+            'email' => 'email|required',
+            'password' => 'required'
+        ]);
+
+        if (!auth()->attempt($loginData)) {
+            return response(['message' => 'Invalid Credentials']);
+        }
+
+        $accessToken = auth()->user()->createToken('authToken')->accessToken;
+
+        return response(['user' => auth()->user(), 'access_token' => $accessToken], 200);
+
     }
 }
