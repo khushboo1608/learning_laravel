@@ -80,6 +80,17 @@ class ArticleAPIController extends AppBaseController
         return $this->sendResponse($article->toArray(), 'Article retrieved successfully');
     }
 
+    public function all()
+    {
+       //$article = $this->articleRepository->get();
+        $article = Article::select("*")->get();
+        if (empty($article)) {
+            return $this->sendError('Article not found');
+        }
+
+        return $this->sendResponse($article->toArray(), 'Article retrieved successfully');
+    }
+
     /**
      * Update the specified Article in storage.
      * PUT/PATCH /articles/{id}

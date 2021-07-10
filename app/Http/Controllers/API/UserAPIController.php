@@ -171,4 +171,17 @@ class UserAPIController extends AppBaseController
         return response(['user' => auth()->user(), 'access_token' => $accessToken], 200);
 
     }
+
+    public function logout(Request $request)
+    {
+        $token = $request->user()->token();
+       
+        if (empty($token)) {
+            return $this->sendError('User not found');
+        }
+
+        $token -> revoke();
+
+        return $this->sendResponse($token->toArray(), 'You have successfully logout!!');
+    }
 }

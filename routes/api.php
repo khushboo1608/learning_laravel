@@ -21,9 +21,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resource('articles', App\Http\Controllers\API\ArticleAPIController::class);
 
-Route::resource('news', App\Http\Controllers\API\NewsAPIController::class);
+// Route::resource('news', App\Http\Controllers\API\NewsAPIController::class);
 
-// Route::resource('users', App\Http\Controllers\API\UserAPIController::class);
+ Route::resource('users', App\Http\Controllers\API\UserAPIController::class);
 
 Route::resource('banners', App\Http\Controllers\API\BannerAPIController::class);
 
@@ -38,5 +38,9 @@ Route::post('/users/login',[App\Http\Controllers\API\UserAPIController::class, '
 Route::middleware('auth:api')->group(function() {
 
     Route::get('/users/{id}/detail',[App\Http\Controllers\API\UserAPIController::class, 'show']);
+    Route::get('/news/detail',[App\Http\Controllers\API\ArticleAPIController::class, 'all']);
+    Route::get('/post/detail',[App\Http\Controllers\API\PostAPIController::class, 'all']);
 
 });
+
+Route::middleware('auth:api')->post('/users/logout',[App\Http\Controllers\API\UserAPIController::class, 'logout']);
